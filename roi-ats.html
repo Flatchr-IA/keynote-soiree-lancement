@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calculateur ROI ATS</title>
+<meta name="description" content="Estimez en quelques secondes le temps et le budget récupérés en équipant vos recruteurs d'un logiciel ATS moderne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Palette Flatchr : primaires #01AEC8 #019BB2 #016D7D, orange #FF9C11 (action uniquement), navy #12435E.
+   Page autonome (CSS + JS inline) : intégrable telle quelle dans HubSpot ou ailleurs. */
+:root {
+  --teal: #01aec8;
+  --teal-mid: #019bb2;
+  --teal-deep: #016d7d;
+  --orange: #ff9c11;
+  --navy: #12435e;
+  --night: #0a2433;
+  --bg: #f4f9fa;
+  --surface: #ffffff;
+  --line: #d6e6ea;
+  --ink: #0a2433;
+  --muted: #557685;
+
+  --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --radius: 16px;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a2433; --surface: #0f3248; --line: #1f5876; --ink: #eef7f9; --muted: #a7c3cd;
+  }
+}
+:root[data-theme="dark"] { --bg: #0a2433; --surface: #0f3248; --line: #1f5876; --ink: #eef7f9; --muted: #a7c3cd; }
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 1rem/1.55 var(--font-body); -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; line-height: 1.05; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: var(--teal-mid); }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 72rem; margin-inline: auto; padding-inline: var(--gutter); }
+.eyebrow { font: 600 0.78rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.14em; color: var(--teal-mid); }
+
+header { padding-block: 1.1rem; background: var(--night); }
+header img { height: 30px; width: auto; display: block; }
+
+.hero { padding-block: clamp(1.5rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 2.5rem); display: grid; gap: 0.9rem; max-width: 46rem; }
+.hero h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 800; }
+.hero h1 em { font-style: normal; color: var(--teal); }
+.hero .lead { font-size: 1.15rem; color: var(--muted); }
+
+.calc { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(1rem, 3vw, 2rem); align-items: start; padding-bottom: 3rem; }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.25rem, 3vw, 2rem); }
+.panel > h2 { font-size: 1.5rem; }
+.panel > .sub { color: var(--muted); margin-top: 0.3rem; }
+
+.field { margin-top: 1.6rem; }
+.field-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.field label { font-weight: 600; }
+.field output { font: 600 0.95rem var(--font-mono); color: var(--teal-deep); white-space: nowrap; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .field output { color: var(--teal); } }
+:root[data-theme="dark"] .field output { color: var(--teal); }
+
+input[type="range"] { --p: 50%; -webkit-appearance: none; appearance: none; width: 100%; height: 6px; margin: 0.9rem 0 0; border-radius: 99px; cursor: pointer;
+  background: linear-gradient(to right, var(--teal) var(--p), var(--line) var(--p)); }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 4px solid var(--teal); box-shadow: 0 2px 8px rgba(10, 36, 51, 0.25); }
+input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 4px solid var(--teal); box-shadow: 0 2px 8px rgba(10, 36, 51, 0.25); }
+
+.rate { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.7rem; }
+.rate input { width: 7rem; font: 600 1.1rem var(--font-mono); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 0.55rem 0.75rem; }
+.rate span { color: var(--muted); }
+
+details { margin-top: 1.8rem; border-top: 1px solid var(--line); padding-top: 1.1rem; }
+summary { cursor: pointer; font-weight: 600; color: var(--teal-mid); }
+.hyp { display: grid; gap: 0.75rem; margin-top: 1rem; }
+.hyp label { display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.92rem; color: var(--muted); }
+.hyp input { width: 5.5rem; font: 600 0.95rem var(--font-mono); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 0.35rem 0.5rem; text-align: right; }
+
+/* Résultats : bloc navy, toujours sombre pour faire ressortir les chiffres */
+.results { position: sticky; top: 1rem; background: var(--navy); color: #eef7f9; border-radius: var(--radius); padding: clamp(1.25rem, 3vw, 2rem); display: grid; gap: 1.4rem;
+  background-image: radial-gradient(120% 80% at 100% 0%, rgba(1, 174, 200, 0.28), transparent 60%); }
+.results .eyebrow { color: var(--teal); }
+.kpi .big { font: 800 clamp(2.6rem, 7vw, 3.6rem)/1 var(--font-display); letter-spacing: -0.03em; margin-top: 0.4rem; font-variant-numeric: tabular-nums; }
+.kpi .note { color: #a7c3cd; margin-top: 0.35rem; }
+.kpi.time .big { font-size: clamp(2rem, 5vw, 2.6rem); }
+.kpi .unit { font-size: 0.5em; font-weight: 600; margin-left: 0.2em; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding-top: 1.2rem; border-top: 1px solid #1f5876; }
+
+.box { background: rgba(10, 36, 51, 0.45); border: 1px solid #1f5876; border-radius: 12px; padding: 1rem 1.1rem; }
+.box h3 { font-size: 1rem; font-family: var(--font-body); font-weight: 700; letter-spacing: 0; margin-bottom: 0.6rem; }
+.rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
+.rows li { display: flex; justify-content: space-between; gap: 1rem; }
+.rows li span { color: #a7c3cd; }
+.rows li b { font-family: var(--font-mono); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.levers { display: grid; gap: 0.7rem; }
+.lever-head { display: flex; justify-content: space-between; font-size: 0.9rem; }
+.lever-head span { color: #a7c3cd; }
+.lever-head b { font-family: var(--font-mono); font-weight: 600; }
+.bar { height: 8px; border-radius: 99px; background: #1f5876; margin-top: 0.3rem; overflow: hidden; }
+.bar i { display: block; height: 100%; border-radius: inherit; background: var(--teal); transition: width 0.25s ease; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; font: 700 1rem var(--font-body); padding: 0.85rem 1.4rem; border-radius: 999px; border: 2px solid transparent; text-decoration: none; cursor: pointer; transition: transform 0.15s ease, background 0.15s ease; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--orange); color: var(--night); flex: 1 1 auto; }
+.btn-primary:hover { background: #ffb040; }
+.btn-ghost { background: transparent; color: #eef7f9; border-color: #2a6a8c; }
+.btn-ghost:hover { border-color: var(--teal); }
+.copied { font-size: 0.85rem; color: var(--teal); min-height: 1.2em; }
+
+.method { color: var(--muted); font-size: 0.88rem; max-width: 52rem; padding-bottom: 3rem; }
+
+@media (max-width: 860px) {
+  .calc { grid-template-columns: minmax(0, 1fr); }
+  .results { position: static; }
+}
+@media (max-width: 420px) { .split { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } .btn:hover { transform: none; } }
+
+/* Rapport imprimable (bouton « Obtenir un rapport détaillé » → Enregistrer en PDF) */
+.print-only { display: none; }
+@media print {
+  :root { --bg: #fff; --surface: #fff; --ink: #0a2433; --muted: #445; }
+  body { background: #fff; }
+  .no-print, details summary, .actions, .copied { display: none !important; }
+  .print-only { display: block; }
+  details { display: block; } details > * { display: block; }
+  .calc { grid-template-columns: 1fr 1fr; }
+  .results { position: static; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  input[type="range"] { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap"><a href="https://www.flatchr.io/" aria-label="Flatchr"><img src="assets/logo-flatchr.webp" alt="Flatchr" width="2000" height="524"></a></div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow">Calcul instantané · données 100% locales</p>
+    <h1>Combien votre équipe RH économiserait <em>vraiment</em>&nbsp;?</h1>
+    <p class="lead">Estimez en quelques secondes le temps et le budget récupérés en équipant vos recruteurs d'un logiciel ATS moderne.</p>
+    <p class="print-only">Rapport généré le <span data-today></span>.</p>
+  </section>
+
+  <section class="calc">
+    <form class="panel" id="form" autocomplete="off" onsubmit="return false">
+      <h2>Votre contexte</h2>
+      <p class="sub no-print">Ajustez les curseurs selon votre réalité.</p>
+
+      <div class="field">
+        <div class="field-head"><label for="rh">Personnes dans l'équipe RH</label><output for="rh" data-out="rh"></output></div>
+        <input type="range" id="rh" name="rh" min="1" max="20" step="1" value="3">
+      </div>
+      <div class="field">
+        <div class="field-head"><label for="duree">Durée moyenne d'un recrutement</label><output for="duree" data-out="duree"></output></div>
+        <input type="range" id="duree" name="duree" min="7" max="90" step="1" value="35">
+      </div>
+      <div class="field">
+        <div class="field-head"><label for="jobboards">Jobboards utilisés</label><output for="jobboards" data-out="jobboards"></output></div>
+        <input type="range" id="jobboards" name="jobboards" min="1" max="15" step="1" value="4">
+      </div>
+      <div class="field">
+        <div class="field-head"><label for="candidatures">Candidatures reçues / mois</label><output for="candidatures" data-out="candidatures"></output></div>
+        <input type="range" id="candidatures" name="candidatures" min="10" max="3000" step="10" value="250">
+      </div>
+      <div class="field">
+        <label for="taux">Coût horaire chargé d'un RH</label>
+        <div class="rate"><input type="number" id="taux" name="taux" min="10" max="200" step="1" value="35" inputmode="numeric"><span>€ / h</span></div>
+      </div>
+
+      <details>
+        <summary>Ajuster les hypothèses de calcul</summary>
+        <div class="hyp">
+          <label>Minutes de tri économisées par candidature <input type="number" name="h_tri" min="0" max="30" step="0.5" value="4"></label>
+          <label>Minutes de publication par offre et par jobboard <input type="number" name="h_diff" min="0" max="60" step="1" value="15"></label>
+          <label>Candidatures reçues par offre <input type="number" name="h_cpo" min="5" max="500" step="5" value="50"></label>
+          <label>Heures de suivi par jour ouvré et par recrutement <input type="number" name="h_suivi" min="0" max="4" step="0.1" value="0.5"></label>
+          <label>Réduction de la durée des process (%) <input type="number" name="h_reduc" min="0" max="80" step="1" value="30"></label>
+        </div>
+      </details>
+    </form>
+
+    <aside class="results" aria-live="polite">
+      <div class="kpi">
+        <p class="eyebrow">Économie annuelle</p>
+        <p class="big" data-r="annuel">—</p>
+        <p class="note">soit <b data-r="mensuel">—</b> / mois</p>
+      </div>
+      <div class="kpi time split">
+        <div>
+          <p class="eyebrow">Temps récupéré</p>
+          <p class="big"><span data-r="heuresAn">—</span><span class="unit">h / an</span></p>
+          <p class="note">≈ <span data-r="jours">—</span> journées de travail</p>
+        </div>
+        <div>
+          <p class="eyebrow">Capacité libérée</p>
+          <p class="big"><span data-r="pct">—</span><span class="unit">%</span></p>
+          <p class="note">du temps de l'équipe RH</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <h3>Gains mensuels détaillés</h3>
+        <ul class="rows">
+          <li><span>Heures économisées</span><b data-r="heuresMois">—</b></li>
+          <li><span>Valeur monétaire</span><b data-r="mensuel">—</b></li>
+          <li><span>Par recruteur</span><b data-r="parRh">—</b></li>
+        </ul>
+      </div>
+
+      <div class="box levers">
+        <h3>D'où viennent les gains</h3>
+        <div><div class="lever-head"><span>Tri assisté des candidatures</span><b data-r="l_tri">—</b></div><div class="bar"><i data-bar="tri"></i></div></div>
+        <div><div class="lever-head"><span>Multi-diffusion des offres</span><b data-r="l_diff">—</b></div><div class="bar"><i data-bar="diff"></i></div></div>
+        <div><div class="lever-head"><span>Process plus courts</span><b data-r="l_suivi">—</b></div><div class="bar"><i data-bar="suivi"></i></div></div>
+      </div>
+
+      <div>
+        <div class="actions">
+          <button type="button" class="btn btn-primary" data-report>Obtenir un rapport détaillé</button>
+          <button type="button" class="btn btn-ghost" data-share>Copier le lien</button>
+        </div>
+        <p class="copied" data-copied></p>
+      </div>
+    </aside>
+  </section>
+
+  <p class="method">Estimation basée sur des moyennes du secteur, ajustables ci-dessus : tri assisté des candidatures (~4 min/candidature économisées), automatisation de la multi-diffusion sur les jobboards et réduction de 30% de la durée des process (moins de relances, de coordination et d'allers-retours avec les managers). Les gains sont plafonnés à 50% du temps de l'équipe. Aucune donnée n'est envoyée : le calcul se fait dans votre navigateur.</p>
+</main>
+
+<script>
+(function () {
+  var form = document.getElementById("form");
+  var HEURES_MOIS_ETP = 151.67;   // 35 h / semaine
+  var JOURS_OUVRES_MOIS = 21.7;
+  var HEURES_JOUR = 7;
+  var PLAFOND = 0.5;              // gains plafonnés à 50% du temps de l'équipe
+
+  var eur = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+  var num = new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 });
+  var labels = {
+    rh: function (v) { return v + (v > 1 ? " personnes" : " personne"); },
+    duree: function (v) { return v + " jours"; },
+    jobboards: function (v) { return v + (v > 1 ? " plateformes" : " plateforme"); },
+    candidatures: function (v) { return num.format(v) + " candidatures"; }
+  };
+
+  function val(name) { var n = parseFloat(form.elements[name].value); return isFinite(n) && n >= 0 ? n : 0; }
+  function set(key, text) { document.querySelectorAll('[data-r="' + key + '"]').forEach(function (el) { el.textContent = text; }); }
+
+  function compute() {
+    var rh = Math.max(1, val("rh")), duree = val("duree"), jb = val("jobboards"), cand = val("candidatures"), taux = val("taux");
+    var offres = cand / Math.max(1, val("h_cpo"));                          // recrutements ouverts par mois
+    var tri = cand * val("h_tri") / 60;                                      // tri assisté
+    var diff = offres * jb * val("h_diff") / 60;                             // une seule saisie au lieu d'une par jobboard
+    var suivi = offres * duree * (5 / 7) * val("h_suivi") * val("h_reduc") / 100; // jours ouvrés de suivi évités
+
+    var brut = tri + diff + suivi;
+    var plafond = rh * HEURES_MOIS_ETP * PLAFOND;
+    var k = brut > plafond ? plafond / brut : 1;
+    var heures = brut * k;
+    var mensuel = heures * taux;
+
+    return {
+      heures: heures, mensuel: mensuel, annuel: mensuel * 12, heuresAn: heures * 12,
+      parRh: mensuel / rh, pct: heures / (rh * HEURES_MOIS_ETP) * 100,
+      leviers: { tri: tri * k, diff: diff * k, suivi: suivi * k }
+    };
+  }
+
+  function render() {
+    Object.keys(labels).forEach(function (name) {
+      var input = form.elements[name];
+      document.querySelector('[data-out="' + name + '"]').textContent = labels[name](+input.value);
+      input.style.setProperty("--p", ((input.value - input.min) / (input.max - input.min) * 100) + "%");
+    });
+
+    var r = compute();
+    set("annuel", eur.format(r.annuel));
+    set("mensuel", eur.format(r.mensuel));
+    set("heuresAn", num.format(r.heuresAn));
+    set("jours", num.format(r.heuresAn / HEURES_JOUR));
+    set("pct", num.format(r.pct));
+    set("heuresMois", num.format(r.heures) + " h");
+    set("parRh", eur.format(r.parRh));
+
+    var max = Math.max(r.leviers.tri, r.leviers.diff, r.leviers.suivi, 0.0001);
+    ["tri", "diff", "suivi"].forEach(function (k) {
+      set("l_" + k, num.format(r.leviers[k]) + " h / mois");
+      document.querySelector('[data-bar="' + k + '"]').style.width = (r.leviers[k] / max * 100) + "%";
+    });
+  }
+
+  // Lien partageable : les valeurs sont stockées dans l'URL (#rh=3&duree=35…), rien n'est envoyé à un serveur.
+  function toHash() {
+    var p = new URLSearchParams();
+    Array.prototype.forEach.call(form.elements, function (el) { if (el.name) p.set(el.name, el.value); });
+    history.replaceState(null, "", "#" + p.toString());
+  }
+  function fromHash() {
+    var p = new URLSearchParams(location.hash.slice(1));
+    p.forEach(function (v, k) { var el = form.elements[k]; if (el && isFinite(parseFloat(v))) el.value = v; });
+  }
+
+  form.addEventListener("input", function () { render(); toHash(); });
+
+  document.querySelector("[data-report]").addEventListener("click", function () {
+    document.querySelector("details").open = true;
+    window.print();
+  });
+  document.querySelector("[data-share]").addEventListener("click", function () {
+    toHash();
+    var msg = document.querySelector("[data-copied]");
+    var done = function () { msg.textContent = "Lien copié : il conserve vos paramètres."; };
+    if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done, function () { msg.textContent = location.href; });
+    else msg.textContent = location.href;
+  });
+
+  document.querySelector("[data-today]").textContent = new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+  fromHash();
+  render();
+})();
+</script>
+</body>
+</html>

@@ -7,6 +7,7 @@ Site statique (HTML/CSS/JS, sans build) aux couleurs de Flatchr.
 | `index.html` | Invitation, compte à rebours, infos pratiques, inscription |
 | `programme.html` | Déroulé détaillé de la soirée |
 | `intervenants.html` | Présentation des intervenants |
+| `roi-ats.html` | Calculateur de ROI d'un ATS (autonome, hypothèses ajustables, lien partageable, rapport PDF via impression) |
 | `evenement.html` | Page simple : l'essentiel de l'événement + lien vers le site (à partager par e-mail, LinkedIn…) |
 
 ## Pages masquées
