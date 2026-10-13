@@ -1,0 +1,19 @@
+<section class="aia-cards-sec{% if module.soft_background %} aia-soft{% endif %}">
+  <div class="aia-wrap">
+    <div class="aia-head">
+      {% if module.eyebrow %}<p class="aia-eyebrow">{{ module.eyebrow }}</p>{% endif %}
+      <h2 class="aia-h2">{{ module.title }}</h2>
+      {% if module.subtitle %}<p class="aia-sub">{{ module.subtitle }}</p>{% endif %}
+    </div>
+    <ol class="aia-cards{% if module.numbered %} aia-numbered{% endif %}">
+      {% for item in module.cards %}
+      <li class="aia-card-item">
+        {% if not module.numbered and item.icon %}<div class="aia-icon" aria-hidden="true">{{ item.icon }}</div>{% endif %}
+        {% if item.tag %}<span class="aia-tag">{{ item.tag }}</span>{% endif %}
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>

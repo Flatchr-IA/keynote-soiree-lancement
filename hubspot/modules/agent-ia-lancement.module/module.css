@@ -1,0 +1,21 @@
+.aia-launch-sec,.aia-launch-sec *{box-sizing:border-box}
+.aia-launch-sec{padding:clamp(3.5rem,8vw,6rem) 0;background:#fff;font-family:Poppins,"Segoe UI",system-ui,sans-serif}
+.aia-launch-sec .aia-wrap{max-width:72rem;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+.aia-launch-sec .aia-launch{background:linear-gradient(120deg,#016d7d,#12435e);color:#fff;border-radius:28px;padding:clamp(2.5rem,6vw,4rem) clamp(1.5rem,5vw,4rem);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;overflow:hidden;position:relative}
+.aia-launch-sec .aia-launch:after{content:"";position:absolute;right:-6rem;top:-6rem;width:18rem;height:18rem;border-radius:50%;background:#01aec8;opacity:.25}
+.aia-launch-sec .aia-launch-text{min-width:0;position:relative;z-index:1}
+.aia-launch-sec .aia-eyebrow{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#dbfaff;margin:0}
+.aia-launch-sec .aia-h2{font-family:inherit;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;margin:.5rem 0 0;color:#fff}
+.aia-launch-sec .aia-h2 em{font-style:normal;color:#ff9c11}
+.aia-launch-sec .aia-launch-lead{margin:.8rem 0 0;opacity:.9;max-width:34rem;color:#fff}
+.aia-launch-sec .aia-countdown{display:flex;gap:.75rem;margin-top:1.5rem}
+.aia-launch-sec .aia-countdown div{background:rgba(255,255,255,.12);border-radius:12px;padding:.6rem .9rem;text-align:center;min-width:4.5rem}
+.aia-launch-sec .aia-countdown b{display:block;font-size:1.6rem;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.aia-launch-sec .aia-countdown span{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;opacity:.8}
+.aia-launch-sec .aia-launch-cta{position:relative;z-index:1;display:flex;flex-direction:column;gap:.75rem}
+.aia-launch-sec .aia-btn,.aia-launch-sec .aia-btn-ghost{display:inline-flex;justify-content:center;font:600 1rem/1 Poppins,sans-serif;padding:.95rem 1.6rem;border-radius:999px;text-decoration:none;border:2px solid transparent}
+.aia-launch-sec .aia-btn{background:#ff9c11;color:#fff}
+.aia-launch-sec .aia-btn:hover{background:#ea8f10;color:#fff}
+.aia-launch-sec .aia-btn-ghost{color:#fff;border-color:rgba(255,255,255,.6)}
+.aia-launch-sec .aia-btn-ghost:hover{background:#fff;color:#016d7d}
+@media (max-width:760px){.aia-launch-sec .aia-launch{grid-template-columns:1fr}}

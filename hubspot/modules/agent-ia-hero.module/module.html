@@ -1,0 +1,20 @@
+<section class="aia-hero" data-url="{{ module.cta_url|escape }}">
+  <div class="aia-wrap">
+    {% if module.badge %}<span class="aia-badge">{{ module.badge }}</span>{% endif %}
+    <h1 class="aia-h1">{{ module.title }} <span class="aia-hl">{{ module.title_highlight }}</span></h1>
+    <p class="aia-lead">{{ module.lead }}</p>
+    <form class="aia-prompt" data-aia-form>
+      <label class="aia-sr" for="aia-prompt-{{ name }}">Décrivez votre besoin de recrutement</label>
+      <textarea id="aia-prompt-{{ name }}" rows="2" placeholder="{{ module.placeholder|escape }}" required></textarea>
+      <div class="aia-prompt-bar">
+        <span class="aia-hint">{{ module.hint }}</span>
+        <button class="aia-send" type="submit" aria-label="Envoyer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+      </div>
+    </form>
+    {% if module.chips %}<div class="aia-chips">{% for item in module.chips %}<button class="aia-chip" type="button">{{ item.label }}</button>{% endfor %}</div>{% endif %}
+    <div class="aia-cta">
+      <a class="aia-btn" href="{{ module.cta_url|escape }}" target="_blank" rel="noopener">{{ module.cta_text }}</a>
+      {% if module.note %}<small>{{ module.note }}</small>{% endif %}
+    </div>
+  </div>
+</section>

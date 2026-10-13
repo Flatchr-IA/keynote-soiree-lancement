@@ -1,0 +1,22 @@
+<section class="aia-launch-sec" id="lancement">
+  <div class="aia-wrap">
+    <div class="aia-launch">
+      <div class="aia-launch-text">
+        {% if module.eyebrow %}<p class="aia-eyebrow">{{ module.eyebrow }}</p>{% endif %}
+        <h2 class="aia-h2">{{ module.title }} <em>{{ module.title_highlight }}</em></h2>
+        <p class="aia-launch-lead">{{ module.text }}</p>
+        {% if module.launch_date %}
+        <div class="aia-countdown" data-date="{{ module.launch_date|escape }}" aria-label="Temps restant avant le lancement">
+          <div><b data-d>—</b><span>jours</span></div>
+          <div><b data-h>—</b><span>heures</span></div>
+          <div><b data-m>—</b><span>min</span></div>
+        </div>
+        {% endif %}
+      </div>
+      <div class="aia-launch-cta">
+        {% if module.cta1_text %}<a class="aia-btn" href="{{ module.cta1_url|escape }}" target="_blank" rel="noopener">{{ module.cta1_text }}</a>{% endif %}
+        {% if module.cta2_text %}<a class="aia-btn-ghost" href="{{ module.cta2_url|escape }}">{{ module.cta2_text }}</a>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>

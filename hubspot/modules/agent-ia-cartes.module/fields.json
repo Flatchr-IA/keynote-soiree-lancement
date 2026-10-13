@@ -1,0 +1,87 @@
+[
+  {
+    "name": "eyebrow",
+    "label": "Surtitre",
+    "type": "text",
+    "default": "Pour le terrain"
+  },
+  {
+    "name": "title",
+    "label": "Titre",
+    "type": "text",
+    "default": "Pensé pour les managers terrain et les réseaux de franchise"
+  },
+  {
+    "name": "subtitle",
+    "label": "Sous-titre (facultatif)",
+    "type": "text",
+    "default": ""
+  },
+  {
+    "name": "numbered",
+    "label": "Cartes numérotées (étapes) au lieu des icônes",
+    "type": "boolean",
+    "default": false
+  },
+  {
+    "name": "soft_background",
+    "label": "Fond gris clair",
+    "type": "boolean",
+    "default": false
+  },
+  {
+    "name": "cards",
+    "label": "Cartes",
+    "type": "group",
+    "occurrence": {
+      "min": 0,
+      "default": 3
+    },
+    "children": [
+      {
+        "name": "icon",
+        "label": "Icône (emoji, ignorée si numérotée)",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "name": "tag",
+        "label": "Étiquette (facultatif)",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "name": "title",
+        "label": "Titre",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "name": "text",
+        "label": "Texte",
+        "type": "text",
+        "default": ""
+      }
+    ],
+    "default": [
+      {
+        "icon": "⏱️",
+        "tag": "Managers terrain",
+        "title": "Du temps rendu au terrain",
+        "text": "Annonce, tri, prise de rendez-vous : l'agent s'occupe de l'administratif. Le manager garde la main sur la décision finale."
+      },
+      {
+        "icon": "💬",
+        "tag": "Managers terrain",
+        "title": "Zéro formation",
+        "text": "Un message WhatsApp suffit. Pas de logiciel à ouvrir, pas de mot de passe à retenir : l'adoption est immédiate."
+      },
+      {
+        "icon": "🏬",
+        "tag": "Réseaux de franchise",
+        "title": "Un réseau autonome, une marque cohérente",
+        "text": "Chaque point de vente recrute en autonomie, avec vos modèles d'annonces et vos process. Le siège garde une vision consolidée."
+      }
+    ]
+  }
+]

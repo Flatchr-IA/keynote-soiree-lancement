@@ -1,0 +1,56 @@
+[
+  {
+    "name": "eyebrow",
+    "label": "Surtitre",
+    "type": "text",
+    "default": "Lancement"
+  },
+  {
+    "name": "title",
+    "label": "Titre (début)",
+    "type": "text",
+    "default": "Disponible le"
+  },
+  {
+    "name": "title_highlight",
+    "label": "Titre (partie en orange)",
+    "type": "text",
+    "default": "1er janvier"
+  },
+  {
+    "name": "text",
+    "label": "Texte",
+    "type": "text",
+    "default": "Activez votre accès gratuit dès maintenant et soyez parmi les premiers à recruter avec l'agent IA Flatchr."
+  },
+  {
+    "name": "launch_date",
+    "label": "Date du compte à rebours (format 2027-01-01T00:00:00+01:00 — vide = pas de compte à rebours)",
+    "type": "text",
+    "default": "2027-01-01T00:00:00+01:00"
+  },
+  {
+    "name": "cta1_text",
+    "label": "Bouton 1 : texte",
+    "type": "text",
+    "default": "Obtenir mon accès gratuit"
+  },
+  {
+    "name": "cta1_url",
+    "label": "Bouton 1 : lien",
+    "type": "text",
+    "default": "https://app.flatchr.io/signup"
+  },
+  {
+    "name": "cta2_text",
+    "label": "Bouton 2 : texte",
+    "type": "text",
+    "default": "Demander une démo"
+  },
+  {
+    "name": "cta2_url",
+    "label": "Bouton 2 : lien",
+    "type": "text",
+    "default": "https://www.flatchr.io/demo"
+  }
+]

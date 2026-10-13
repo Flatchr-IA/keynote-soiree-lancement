@@ -1,0 +1,150 @@
+[
+  {
+    "name": "eyebrow",
+    "label": "Surtitre",
+    "type": "text",
+    "default": "Démo"
+  },
+  {
+    "name": "title",
+    "label": "Titre",
+    "type": "text",
+    "default": "Recruter depuis WhatsApp, entre deux clients"
+  },
+  {
+    "name": "text",
+    "label": "Texte",
+    "type": "text",
+    "default": "Pas de nouveau logiciel à apprendre : vos managers écrivent à l'agent comme à un collègue, depuis l'appli qu'ils utilisent déjà."
+  },
+  {
+    "name": "points",
+    "label": "Points clés",
+    "type": "group",
+    "occurrence": {
+      "min": 0,
+      "default": 3
+    },
+    "children": [
+      {
+        "name": "text",
+        "label": "Point",
+        "type": "text",
+        "default": ""
+      }
+    ],
+    "default": [
+      {
+        "text": "L'agent rédige et publie l'annonce sur les bons jobboards"
+      },
+      {
+        "text": "Il présélectionne les candidats selon vos critères"
+      },
+      {
+        "text": "Il propose les créneaux d'entretien et relance pour vous"
+      }
+    ]
+  },
+  {
+    "name": "replay_text",
+    "label": "Texte du bouton « rejouer »",
+    "type": "text",
+    "default": "Rejouer la démo"
+  },
+  {
+    "name": "agent_name",
+    "label": "Nom affiché dans WhatsApp",
+    "type": "text",
+    "default": "Agent IA Flatchr"
+  },
+  {
+    "name": "messages",
+    "label": "Messages de la conversation",
+    "type": "group",
+    "occurrence": {
+      "min": 0,
+      "default": 7
+    },
+    "children": [
+      {
+        "name": "sender",
+        "label": "Envoyé par",
+        "type": "choice",
+        "display": "select",
+        "choices": [
+          [
+            "manager",
+            "Manager (bulle verte, à droite)"
+          ],
+          [
+            "agent",
+            "Agent IA (bulle blanche, à gauche)"
+          ]
+        ],
+        "default": "manager"
+      },
+      {
+        "name": "text",
+        "label": "Message",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "name": "card",
+        "label": "Encadré sous le message (facultatif, <br> pour aller à la ligne)",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "name": "time",
+        "label": "Heure",
+        "type": "text",
+        "default": "09:12"
+      }
+    ],
+    "default": [
+      {
+        "sender": "manager",
+        "text": "Salut ! J'ai besoin de 2 vendeurs en CDI pour le magasin de Lyon Part-Dieu, dispo vite 🙏",
+        "card": "",
+        "time": "09:12"
+      },
+      {
+        "sender": "agent",
+        "text": "C'est noté 👍 J'ai préparé l'annonce à partir de votre modèle « Vendeur·se ». Je la publie ?",
+        "card": "📄 Vendeur·se H/F – CDI 35h – Lyon Part-Dieu",
+        "time": "09:12"
+      },
+      {
+        "sender": "manager",
+        "text": "Oui, vas-y",
+        "card": "",
+        "time": "09:13"
+      },
+      {
+        "sender": "agent",
+        "text": "Publiée sur Indeed, France Travail et votre page carrière ✅ Je vous préviens dès que j'ai des profils.",
+        "card": "",
+        "time": "09:13"
+      },
+      {
+        "sender": "agent",
+        "text": "Bonne nouvelle : 14 candidatures depuis hier. Voici les 3 profils qui collent le mieux :",
+        "card": "⭐ Sarah M. — 3 ans en retail<br>⭐ Yanis B. — dispo immédiatement<br>⭐ Léa D. — vente + caisse",
+        "time": "18:40"
+      },
+      {
+        "sender": "manager",
+        "text": "Top, je veux voir Sarah et Yanis",
+        "card": "",
+        "time": "18:42"
+      },
+      {
+        "sender": "agent",
+        "text": "Entretiens calés jeudi à 10h et 11h, invitations envoyées 📅 Bonne soirée !",
+        "card": "",
+        "time": "18:42"
+      }
+    ]
+  }
+]

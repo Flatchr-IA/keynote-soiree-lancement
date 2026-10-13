@@ -1,0 +1,25 @@
+<section class="aia-demo" id="demo">
+  <div class="aia-wrap aia-demo-grid">
+    <div class="aia-demo-text">
+      {% if module.eyebrow %}<p class="aia-eyebrow">{{ module.eyebrow }}</p>{% endif %}
+      <h2 class="aia-h2">{{ module.title }}</h2>
+      <p class="aia-demo-lead">{{ module.text }}</p>
+      {% if module.points %}<ul class="aia-demo-list">{% for item in module.points %}<li>{{ item.text }}</li>{% endfor %}</ul>{% endif %}
+      <button class="aia-replay" type="button" data-aia-replay>↻ {{ module.replay_text }}</button>
+    </div>
+    <div class="aia-phone" aria-label="Démonstration d'une conversation WhatsApp avec l'agent IA Flatchr">
+      <div class="aia-screen">
+        <div class="aia-wa-top">
+          <div class="aia-wa-avatar">F</div>
+          <div><strong>{{ module.agent_name }}</strong><span>en ligne</span></div>
+        </div>
+        <div class="aia-wa-chat" data-aia-chat aria-live="polite">
+          {% for item in module.messages %}
+          <div class="aia-msg aia-{{ item.sender }}">{{ item.text }}{% if item.card %}<div class="aia-card">{{ item.card }}</div>{% endif %}<time>{{ item.time }}</time></div>
+          {% endfor %}
+        </div>
+        <div class="aia-wa-input"><span>Écrire un message</span><b aria-hidden="true"></b></div>
+      </div>
+    </div>
+  </div>
+</section>
