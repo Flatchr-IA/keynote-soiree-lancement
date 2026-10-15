@@ -20,29 +20,15 @@
   {
     "name": "points",
     "label": "Points clés",
-    "type": "group",
+    "type": "text",
     "occurrence": {
       "min": 0,
       "default": 3
     },
-    "children": [
-      {
-        "name": "text",
-        "label": "Point",
-        "type": "text",
-        "default": ""
-      }
-    ],
     "default": [
-      {
-        "text": "L'agent rédige et publie l'annonce sur les bons jobboards"
-      },
-      {
-        "text": "Il présélectionne les candidats selon vos critères"
-      },
-      {
-        "text": "Il propose les créneaux d'entretien et relance pour vous"
-      }
+      "L'agent rédige et publie l'annonce sur les bons jobboards",
+      "Il présélectionne les candidats selon vos critères",
+      "Il propose les créneaux d'entretien et relance pour vous"
     ]
   },
   {

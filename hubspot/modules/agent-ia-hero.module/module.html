@@ -11,7 +11,7 @@
         <button class="aia-send" type="submit" aria-label="Envoyer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
       </div>
     </form>
-    {% if module.chips %}<div class="aia-chips">{% for item in module.chips %}<button class="aia-chip" type="button">{{ item.label }}</button>{% endfor %}</div>{% endif %}
+    {% if module.chips %}<div class="aia-chips">{% for item in module.chips %}<button class="aia-chip" type="button">{{ item }}</button>{% endfor %}</div>{% endif %}
     <div class="aia-cta">
       <a class="aia-btn" href="{{ module.cta_url|escape }}" target="_blank" rel="noopener">{{ module.cta_text }}</a>
       {% if module.note %}<small>{{ module.note }}</small>{% endif %}

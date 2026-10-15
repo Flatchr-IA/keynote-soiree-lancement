@@ -38,29 +38,15 @@
   {
     "name": "chips",
     "label": "Exemples de demandes",
-    "type": "group",
+    "type": "text",
     "occurrence": {
       "min": 0,
       "default": 3
     },
-    "children": [
-      {
-        "name": "label",
-        "label": "Exemple",
-        "type": "text",
-        "default": ""
-      }
-    ],
     "default": [
-      {
-        "label": "Recruter un serveur pour ce week-end"
-      },
-      {
-        "label": "Ouvrir un poste dans mes 12 franchises"
-      },
-      {
-        "label": "Trier les candidats de la semaine"
-      }
+      "Recruter un serveur pour ce week-end",
+      "Ouvrir un poste dans mes 12 franchises",
+      "Trier les candidats de la semaine"
     ]
   },
   {

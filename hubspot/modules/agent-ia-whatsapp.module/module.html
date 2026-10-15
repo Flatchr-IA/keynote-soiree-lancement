@@ -4,7 +4,7 @@
       {% if module.eyebrow %}<p class="aia-eyebrow">{{ module.eyebrow }}</p>{% endif %}
       <h2 class="aia-h2">{{ module.title }}</h2>
       <p class="aia-demo-lead">{{ module.text }}</p>
-      {% if module.points %}<ul class="aia-demo-list">{% for item in module.points %}<li>{{ item.text }}</li>{% endfor %}</ul>{% endif %}
+      {% if module.points %}<ul class="aia-demo-list">{% for item in module.points %}<li>{{ item }}</li>{% endfor %}</ul>{% endif %}
       <button class="aia-replay" type="button" data-aia-replay>↻ {{ module.replay_text }}</button>
     </div>
     <div class="aia-phone" aria-label="Démonstration d'une conversation WhatsApp avec l'agent IA Flatchr">

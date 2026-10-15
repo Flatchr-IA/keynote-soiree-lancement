@@ -5,6 +5,7 @@ def T(name, label, default=""): return {"name": name, "label": label, "type": "t
 def TA(name, label, default=""): return T(name, label, default)  # champ texte long (type « Texte » dans HubSpot)
 def B(name, label, default=False): return {"name": name, "label": label, "type": "boolean", "default": default}
 def CH(name, label, choices, default): return {"name": name, "label": label, "type": "choice", "display": "select", "choices": choices, "default": default}
+def R(name, label, default): return {"name": name, "label": label, "type": "text", "occurrence": {"min": 0, "default": len(default)}, "default": default}
 def G(name, label, children, default): return {"name": name, "label": label, "type": "group", "occurrence": {"min": 0, "default": len(default)}, "children": children, "default": default}
 
 FREE = "https://app.flatchr.io/signup"
@@ -17,8 +18,7 @@ MODULES = [
    TA("lead", "Texte d'accroche", "Dites à l'agent IA Flatchr ce dont vous avez besoin. Il rédige l'annonce, la diffuse, trie les candidats et cale les entretiens. Vous, vous gérez votre équipe."),
    T("placeholder", "Texte d'exemple dans le champ", "Ex. : Je cherche 2 vendeurs en CDI pour mon magasin de Lyon, dispo dès lundi…"),
    T("hint", "Mention sous le champ", "✨ L'agent IA Flatchr démarre votre recrutement"),
-   G("chips", "Exemples de demandes", [T("label", "Exemple")],
-     [{"label": "Recruter un serveur pour ce week-end"}, {"label": "Ouvrir un poste dans mes 12 franchises"}, {"label": "Trier les candidats de la semaine"}]),
+   R("chips", "Exemples de demandes", ["Recruter un serveur pour ce week-end", "Ouvrir un poste dans mes 12 franchises", "Trier les candidats de la semaine"]),
    T("cta_text", "Texte du bouton", "Essayer gratuitement"),
    T("cta_url", "Lien de l'accès gratuit", FREE),
    T("note", "Mention sous le bouton", "Sans carte bancaire · Accès gratuit"),
@@ -35,8 +35,7 @@ MODULES = [
    T("eyebrow", "Surtitre", "Démo"),
    T("title", "Titre", "Recruter depuis WhatsApp, entre deux clients"),
    TA("text", "Texte", "Pas de nouveau logiciel à apprendre : vos managers écrivent à l'agent comme à un collègue, depuis l'appli qu'ils utilisent déjà."),
-   G("points", "Points clés", [T("text", "Point")],
-     [{"text": "L'agent rédige et publie l'annonce sur les bons jobboards"}, {"text": "Il présélectionne les candidats selon vos critères"}, {"text": "Il propose les créneaux d'entretien et relance pour vous"}]),
+   R("points", "Points clés", ["L'agent rédige et publie l'annonce sur les bons jobboards", "Il présélectionne les candidats selon vos critères", "Il propose les créneaux d'entretien et relance pour vous"]),
    T("replay_text", "Texte du bouton « rejouer »", "Rejouer la démo"),
    T("agent_name", "Nom affiché dans WhatsApp", "Agent IA Flatchr"),
    G("messages", "Messages de la conversation", [

@@ -15,7 +15,9 @@ def fields_rows(fields, indent=False):
         if f["type"] == "choice":
             extra = "<br><small>Options : " + " · ".join(f"<code>{e(v)}</code> ({e(l.split(' (')[0])})" for v, l in f["choices"]) + "</small>"
         if f["type"] == "group":
-            extra = "<br><small>Activer « Répéter ». Champs à créer dans le groupe :</small>"
+            extra = "<br><small>Groupe répété : crée d'abord les champs ci-dessous, puis regroupe-les (voir encadré). Active « Répéter ».</small>"
+        elif "occurrence" in f:
+            extra = "<br><small>Dans les options du champ, active « Répéter » (occurrences multiples).</small>"
         out.append(f'<tr><td>{pre}{e(f["label"])}</td><td><code class="cp" title="Cliquer pour copier">{e(f["name"])}</code></td><td>{TYPE[f["type"]]}{extra}</td></tr>')
         if f["type"] == "group":
             out += fields_rows(f["children"], True)
@@ -25,7 +27,10 @@ def content_list(fields, values):
     out = []
     for f in fields:
         v = values.get(f["name"], f.get("default"))
-        if f["type"] == "group":
+        if "occurrence" in f and f["type"] != "group":
+            items = "".join(f"<li><span class='n'>{i}</span><div>{fmt(f, x)}</div></li>" for i, x in enumerate(v or [], 1))
+            out.append(f'<div class="kv"><dt>{e(f["label"])}</dt><dd><ol class="items">{items}</ol></dd></div>')
+        elif f["type"] == "group":
             items = []
             for i, it in enumerate(v or [], 1):
                 parts = [f'<b>{e(c["label"].split(" (")[0])}</b> : {fmt(c, it.get(c["name"], ""))}' for c in f["children"] if it.get(c["name"], "") not in ("", None)]
@@ -186,7 +191,8 @@ ol.items .n {{ font-size: .75rem; font-weight: 600; color: var(--accent); min-wi
 <section>
   <h2><span class="step">2</span>Créer les 5 modules</h2>
   <p>Pour chaque module : crée le fichier, colle le code, ajoute les champs, publie le module. Les champs n'ont pas besoin de valeur par défaut : les textes se saisissent à l'étape 3.</p>
-  <p class="callout"><b>Le point qui fait tout marcher :</b> le <b>nom HubL</b> de chaque champ doit être identique à celui du tableau, sinon le texte n'apparaît pas. Pour un groupe, crée d'abord le groupe, active <b>Répéter</b>, puis ajoute les champs à l'intérieur.</p>
+  <p class="callout"><b>Le point qui fait tout marcher :</b> le <b>nom HubL</b> de chaque champ doit être identique à celui du tableau, sinon le texte n'apparaît pas. Le menu « Ajouter un champ » demande un <b>type</b> (ex. tape « Texte »), puis tu renseignes le libellé et le nom HubL dans les réglages du champ.</p>
+  <p class="callout"><b>Champs répétés :</b> « Exemples de demandes » et « Points clés » sont de simples champs <b>Texte</b> avec l'option <b>Répéter</b> activée. Seuls 2 modules ont de vrais groupes (Démo WhatsApp : messages ; Cartes : cartes) : un groupe ne se crée pas depuis « Ajouter un champ », il se forme en regroupant des champs déjà créés.</p>
   {''.join(mods)}
 </section>
 
