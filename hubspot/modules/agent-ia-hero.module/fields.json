@@ -66,5 +66,32 @@
     "label": "Mention sous le bouton",
     "type": "text",
     "default": "Sans carte bancaire · Accès gratuit"
+  },
+  {
+    "name": "decor_image",
+    "label": "Illustration de fond (facultatif)",
+    "type": "image",
+    "default": {
+      "src": "",
+      "alt": "",
+      "loading": "eager"
+    }
+  },
+  {
+    "name": "decor_side",
+    "label": "Côté de l'illustration",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      [
+        "left",
+        "Gauche"
+      ],
+      [
+        "right",
+        "Droite"
+      ]
+    ],
+    "default": "left"
   }
 ]

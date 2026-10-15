@@ -5,7 +5,7 @@ from spec import MODULES, STEPS
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 e = html.escape
-TYPE = {"text": "Texte", "boolean": "Booléen (case à cocher)", "choice": "Choix", "group": "Groupe (répéteur)"}
+TYPE = {"image": "Image", "text": "Texte", "boolean": "Booléen (case à cocher)", "choice": "Choix", "group": "Groupe (répéteur)"}
 
 def fields_rows(fields, indent=False):
     out = []
@@ -36,6 +36,8 @@ def content_list(fields, values):
                 parts = [f'<b>{e(c["label"].split(" (")[0])}</b> : {fmt(c, it.get(c["name"], ""))}' for c in f["children"] if it.get(c["name"], "") not in ("", None)]
                 items.append(f"<li><span class='n'>{i}</span><div>{'<br>'.join(parts)}</div></li>")
             out.append(f'<div class="kv"><dt>{e(f["label"])}</dt><dd><ol class="items">{"".join(items)}</ol></dd></div>')
+        elif f["type"] == "image":
+            out.append(f'<div class="kv"><dt>{e(f["label"].split(" (")[0])}</dt><dd>{fmt(f, v)}</dd></div>')
         elif v not in ("", None):
             out.append(f'<div class="kv"><dt>{e(f["label"].split(" (")[0])}</dt><dd>{fmt(f, v)}</dd></div>')
     return "".join(out)
@@ -43,6 +45,7 @@ def content_list(fields, values):
 def fmt(f, v):
     if f["type"] == "boolean": return "✅ coché" if v else "☐ non coché"
     if f["type"] == "choice": return e(dict(f["choices"])[v])
+    if f["type"] == "image": return "Choisis ton illustration (ex. les tentacules) dans le gestionnaire de fichiers"
     return f'<span class="val">{e(str(v))}</span>'
 
 def code(label, path, lang):

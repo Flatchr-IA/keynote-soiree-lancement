@@ -1,4 +1,5 @@
 <section class="aia-hero" data-url="{{ module.cta_url|escape }}">
+  {% if module.decor_image.src %}<img class="aia-decor aia-decor-{{ module.decor_side or 'left' }}" src="{{ module.decor_image.src }}" alt="" aria-hidden="true">{% endif %}
   <div class="aia-wrap">
     {% if module.badge %}<span class="aia-badge">{{ module.badge }}</span>{% endif %}
     <h1 class="aia-h1">{{ module.title }} <span class="aia-hl">{{ module.title_highlight }}</span></h1>

@@ -22,6 +22,8 @@ MODULES = [
    T("cta_text", "Texte du bouton", "Essayer gratuitement"),
    T("cta_url", "Lien de l'accès gratuit", FREE),
    T("note", "Mention sous le bouton", "Sans carte bancaire · Accès gratuit"),
+   {"name": "decor_image", "label": "Illustration de fond (facultatif)", "type": "image", "default": {"src": "", "alt": "", "loading": "eager"}},
+   CH("decor_side", "Côté de l'illustration", [["left", "Gauche"], ["right", "Droite"]], "left"),
  ]),
  ("agent-ia-video", "Agent IA - Vidéo de vision", "Vidéo YouTube, Vimeo ou .mp4, avec encart d'attente", [
    T("eyebrow", "Surtitre", "Notre vision"),
