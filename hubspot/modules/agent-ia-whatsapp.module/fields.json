@@ -32,12 +32,6 @@
     ]
   },
   {
-    "name": "replay_text",
-    "label": "Texte du bouton « rejouer »",
-    "type": "text",
-    "default": "Rejouer la démo"
-  },
-  {
     "name": "agent_name",
     "label": "Nom affiché dans WhatsApp",
     "type": "text",

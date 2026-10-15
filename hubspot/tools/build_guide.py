@@ -226,7 +226,7 @@ ol.items .n {{ font-size: .75rem; font-weight: 600; color: var(--accent); min-wi
     <li><input type="checkbox" id="c3"><label for="c3">Lien d'accès gratuit confirmé (aujourd'hui <code>app.flatchr.io/signup</code>, à vérifier avec Damien), dans le module 1 et le module 6.</label></li>
     <li><input type="checkbox" id="c4"><label for="c4">Mention « Sans carte bancaire » confirmée ou retirée.</label></li>
     <li><input type="checkbox" id="c5"><label for="c5">Lien de la vidéo de vision ajouté dans le module 2 (sinon l'encart « Bientôt disponible » s'affiche).</label></li>
-    <li><input type="checkbox" id="c6"><label for="c6">Démo WhatsApp : la conversation se joue en arrivant dessus, « Rejouer la démo » fonctionne. Prénoms et jobboards fictifs validés.</label></li>
+    <li><input type="checkbox" id="c6"><label for="c6">Démo WhatsApp : la conversation se joue en arrivant dessus (puis se relance seule 10 min après). Prénoms et jobboards fictifs validés.</label></li>
     <li><input type="checkbox" id="c7"><label for="c7">Textes relus (bénéfices, étapes), compte à rebours sur la bonne date.</label></li>
   </ul>
   <p class="callout"><b>Si un texte n'apparaît pas :</b> compare le nom HubL du champ avec le tableau. <b>Si un module n'apparaît pas dans l'éditeur de page :</b> vérifie qu'il est utilisable dans les « Pages » et que tu as bien cliqué sur « Publier les modifications » dans le Gestionnaire de design.</p>

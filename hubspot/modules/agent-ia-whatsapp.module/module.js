@@ -1,10 +1,13 @@
-// Démo WhatsApp : la conversation est visible d'emblée, puis rejouée en animation à l'arrivée à l'écran
+// Démo WhatsApp : conversation visible d'emblée, jouée en animation à l'arrivée à l'écran,
+// puis rejouée automatiquement 10 minutes après la fin (dès que la démo est visible).
+var AIA_REPLAY_MINUTES = 10;
 document.querySelectorAll('.aia-demo').forEach(function (sec) {
   var chat = sec.querySelector('[data-aia-chat]'), msgs = [].slice.call(chat.querySelectorAll('.aia-msg')), timers = [];
-  if (!msgs.length) return;
+  if (!msgs.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  var visible = false, due = true, playing = false;
   function play() {
+    due = false; playing = true;
     timers.forEach(clearTimeout); timers = [];
-    var old = chat.querySelector('.aia-typing'); if (old) old.remove();
     msgs.forEach(function (m) { m.classList.add('aia-hidden'); m.classList.remove('aia-in'); });
     chat.scrollTop = 0;
     var delay = 400;
@@ -24,14 +27,14 @@ document.querySelectorAll('.aia-demo').forEach(function (sec) {
       }, delay));
       delay += isAgent ? 1600 : 1300;
     });
+    // Fin de la démo : prochaine lecture dans 10 minutes
+    timers.push(setTimeout(function () {
+      playing = false;
+      timers.push(setTimeout(function () { due = true; if (visible) play(); }, AIA_REPLAY_MINUTES * 60000));
+    }, delay));
   }
-  var replay = sec.querySelector('[data-aia-replay]');
-  if (replay) replay.addEventListener('click', play);
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if ('IntersectionObserver' in window) {
-    var obs = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) { play(); obs.disconnect(); }
-    }, { threshold: 0.35 });
-    obs.observe(chat);
-  }
+  new IntersectionObserver(function (entries) {
+    visible = entries[0].isIntersecting;
+    if (visible && due && !playing) play();
+  }, { threshold: 0.35 }).observe(chat);
 });

@@ -38,7 +38,6 @@ MODULES = [
    T("title", "Titre", "Recruter depuis WhatsApp, entre deux clients"),
    TA("text", "Texte", "Pas de nouveau logiciel à apprendre : vos managers écrivent à l'agent comme à un collègue, depuis l'appli qu'ils utilisent déjà."),
    R("points", "Points clés", ["L'agent rédige et publie l'annonce sur les bons jobboards", "Il présélectionne les candidats selon vos critères", "Il propose les créneaux d'entretien et relance pour vous"]),
-   T("replay_text", "Texte du bouton « rejouer »", "Rejouer la démo"),
    T("agent_name", "Nom affiché dans WhatsApp", "Agent IA Flatchr"),
    G("messages", "Messages de la conversation", [
        CH("sender", "Envoyé par", [["manager", "Manager (bulle verte, à droite)"], ["agent", "Agent IA (bulle blanche, à gauche)"]], "manager"),
