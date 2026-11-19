@@ -1,10 +1,10 @@
 // Infos clés de l'événement : à modifier ici, elles alimentent le compte à rebours et le lien agenda.
 const EVENT = {
-  title: "Flatchr — Soirée de lancement",
+  title: "Soirée de lancement Flatchr 🐙",
   start: "2026-11-19T18:30:00+01:00",
   end: "2026-11-19T23:00:00+01:00",  
   location: "Flatchr, 79 rue Marcel Dassault, 92100 Boulogne-Billancourt, France",
-  details: "Découverte de la nouvelle version de l'IA agentique Flatchr et soirée pour célébrer nos 10 ans : roadmap agentique, DJ set, traiteur italien et invité surprise.",
+  details: "L'ATS tel que vous le connaissez ne sera plus jamais comme avant. Rejoignez-nous pour découvrir notre vision du futur du recrutement, la nouvelle version de l'IA agentique Flatchr… et célébrer ensemble nos 10 ans.\n\n📆 QUAND\nJeudi 19 novembre 2026\nAccueil à partir de 18h30, fin de soirée vers 23h00\n\n📍 OÙ\nChez Flatchr – 79 rue Marcel Dassault, 92100 Boulogne-Billancourt\n\n🚇 ACCÈS\nMétro : Marcel Sembat (ligne 9)\nParking : entrée au 88 rue Thiers. Au digicode, appelez « gardien » et indiquez que vous venez pour Flatchr. Porte en face, places Flatchr au niveau -2 : n° 71 à 75 et 112 à 116\n\n✨ AU PROGRAMME\n- Présentation de notre Agent IA et retour d’expérience de Pokawa\n- Apéro dînatoire avec un traiteur italien\n- DJ set… et plein de surprises vous attendent\n- Dress code : venez comme vous êtes, avec une touche futuriste\n\n👉 Toutes les infos : https://events.flatchr.io/\n\nUn empêchement ? Merci de nous prévenir à contact@flatchr.io pour libérer votre place.\n\nÀ très vite,\nL'équipe Flatchr",
   rsvpUrl: "https://survey.refiner.io/mqggze-m46jk0", // Questionnaire d'inscription Refiner : tous les boutons « Je confirme ma venue » y mènent.
   videoUrl: "https://www.youtube.com/shorts/G93r_8_lBD0" // Lien YouTube (vidéo, Short), Vimeo, Google Drive (partagé « Tous les utilisateurs disposant du lien ») ou fichier .mp4. Vide = encart "Vidéo à venir".
 };
@@ -77,3 +77,4 @@ const EVENT = {
   tick();
   setInterval(tick, 30000);
 })();
+
