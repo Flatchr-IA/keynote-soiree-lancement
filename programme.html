@@ -4,15 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Programme · Soirée de lancement Flatchr</title>
-<meta name="description" content="Le programme détaillé de la keynote et soirée de lancement Flatchr.">
+<meta name="description" content="Le programme de la soirée de lancement agent IA de Flatchr, jeudi 19 novembre 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=3">
+<style>
+  /* Encart « agent » : le guide Octo se déverrouille à 20h30 (présentation des badges QR code) */
+  .agent-card { margin-top: 1rem; background: var(--navy); border: 1px solid var(--navy-line); border-radius: var(--radius); padding: clamp(1.5rem, 4vw, 2.25rem); display: grid; gap: 0.9rem; justify-items: start; }
+  .agent-card h2 { font-size: var(--step-2); }
+  .agent-card p { color: var(--muted); max-width: 52ch; }
+  .agent-card .btn[aria-disabled="true"] { background: var(--navy-line); color: var(--muted); pointer-events: none; }
+  .agent-card .lock { font-family: var(--font-mono); font-size: var(--step--1); color: var(--orange); letter-spacing: 0.04em; }
+</style>
 </head>
 <body>
-
-<div class="draft-note">Version de travail : horaires et contenus à confirmer.</div>
 
 <header class="site-header">
   <div class="wrap">
@@ -20,7 +26,6 @@
     <nav class="nav" aria-label="Navigation principale">
       <a href="index.html">Invitation</a>
       <a href="programme.html" aria-current="page">Programme</a>
-      <a href="intervenants.html">Intervenants</a>
     </nav>
   </div>
 </header>
@@ -28,9 +33,9 @@
 <main>
   <section class="page-hero">
     <div class="wrap">
-      <p class="eyebrow">Jeudi 5 novembre 2026 · 18h30 – 23h00</p>
+      <p class="eyebrow">Jeudi 19 novembre 2026 · 18h30 – 23h00</p>
       <h1>Le programme</h1>
-      <p>Une heure et demie de contenus, puis toute la soirée pour échanger.</p>
+      <p>Chez Flatchr, 79 rue Marcel Dassault, Boulogne-Billancourt.</p>
     </div>
   </section>
 
@@ -40,69 +45,38 @@
 
       <ol class="timeline">
         <li class="slot">
-          <div class="slot-time"><b>18:30</b><span>45 min</span></div>
+          <div class="slot-time"><b>18:30</b><span>1 h 30</span></div>
           <div class="slot-body">
-            <span class="chip">Accueil</span>
-            <h3>Accueil des invités &amp; cocktail de bienvenue</h3>
-            <p>Retrait des badges, vestiaire et premier verre. L'occasion de rencontrer l'équipe Flatchr avant le début de la keynote.</p>
-          </div>
-        </li>
-
-        <li class="slot">
-          <div class="slot-time"><b>19:15</b><span>10 min</span></div>
-          <div class="slot-body">
-            <span class="chip">Ouverture</span>
-            <h3>Mot d'ouverture</h3>
-            <p>Pourquoi cette soirée, et ce qui a guidé notre travail cette année : rendre les managers de terrain autonomes dans leurs recrutements.</p>
-            <div class="speakers-inline"><a href="intervenants.html#valentin">Valentin</a><a href="intervenants.html#kimberley-faure">Kimberley Faure</a></div>
+            <span class="chip">Invités</span>
+            <h3>Accueil des invités</h3>
+            <p>Vestiaire, tickets d'or et coupe de champagne pour lancer la soirée.</p>
           </div>
         </li>
 
         <li class="slot is-key">
-          <div class="slot-time"><b>19:25</b><span>30 min</span></div>
+          <div class="slot-time"><b>20:00</b><span>30 min</span></div>
           <div class="slot-body">
-            <span class="chip">Keynote</span>
-            <h3>Keynote : <span class="a-completer">[titre de la keynote / nom du lancement]</span></h3>
-            <p>La présentation de la nouveauté que nous lançons : à quel problème elle répond, pour qui, et ce qu'elle change concrètement pour les RH et les managers en magasin, en agence ou en restaurant.</p>
-            <div class="speakers-inline"><a href="intervenants.html#valentin">Valentin</a><a href="intervenants.html#martin">Martin</a></div>
+            <span class="chip">Conférence</span>
+            <h3>Keynote, démo et témoignage Pokawa</h3>
+            <p>La présentation de la nouvelle IA agentique Flatchr, une démo en direct et le retour d'expérience de Pokawa.</p>
           </div>
         </li>
 
         <li class="slot is-key">
-          <div class="slot-time"><b>19:55</b><span>20 min</span></div>
+          <div class="slot-time"><b>20:30</b><span>30 min</span></div>
           <div class="slot-body">
-            <span class="chip">Démo live</span>
-            <h3>Démo en direct</h3>
-            <p>De la publication d'une offre à l'embauche d'un opérationnel : le parcours complet, en conditions réelles, côté RH et côté manager.</p>
-            <div class="speakers-inline"><a href="intervenants.html#martin">Martin</a></div>
+            <span class="chip">Badges QR code</span>
+            <h3>Scannez votre badge</h3>
+            <p>Le moment est venu : scannez enfin votre badge QR code et testez l'agent par vous-même.</p>
           </div>
         </li>
 
         <li class="slot">
-          <div class="slot-time"><b>20:15</b><span>35 min</span></div>
-          <div class="slot-body">
-            <span class="chip">Table ronde</span>
-            <h3>Recruter des opérationnels en réseau : ce qui marche vraiment</h3>
-            <p>Franchises, concessions, hôtellerie-restauration : des responsables RH et des managers partagent leurs méthodes pour recruter vite et bien, sur des dizaines de points de vente.</p>
-            <div class="speakers-inline"><a href="intervenants.html#client-temoin">Client témoin</a><a href="intervenants.html#expert-invite">Expert·e invité·e</a><a href="intervenants.html#kimberley-faure">Kimberley Faure (animation)</a></div>
-          </div>
-        </li>
-
-        <li class="slot">
-          <div class="slot-time"><b>20:50</b><span>10 min</span></div>
-          <div class="slot-body">
-            <span class="chip">Questions</span>
-            <h3>Vos questions</h3>
-            <p>Un temps de questions-réponses avec l'ensemble des intervenants.</p>
-          </div>
-        </li>
-
-        <li class="slot is-key">
           <div class="slot-time"><b>21:00</b><span>2 h</span></div>
           <div class="slot-body">
-            <span class="chip">Soirée</span>
-            <h3>Cocktail dînatoire &amp; networking</h3>
-            <p>Place à la soirée. L'équipe produit reste disponible pour des démos à la demande et pour recueillir vos retours.</p>
+            <span class="chip">Temps festif</span>
+            <h3>Montée musicale</h3>
+            <p>DJ set, avec un robot aux côtés de la DJ.</p>
           </div>
         </li>
 
@@ -110,15 +84,18 @@
           <div class="slot-time"><b>23:00</b><span>&nbsp;</span></div>
           <div class="slot-body">
             <span class="chip">Fin</span>
-            <h3>Fin de soirée</h3>
-            <p>Merci d'être venu·e. Les supports de la keynote vous seront envoyés par e-mail le lendemain.</p>
+            <h3>Fin des festivités</h3>
+            <p>Merci d'avoir partagé cette soirée avec nous !</p>
           </div>
         </li>
       </ol>
 
-      <div class="center-cta">
-        <a class="btn btn-primary" href="index.html#inscription" data-rsvp>Je confirme ma venue</a>
-        <a class="btn btn-ghost" href="intervenants.html">Voir les intervenants</a>
+      <div class="agent-card" id="agent">
+        <p class="eyebrow">Octo AI sur WhatsApp</p>
+        <h2>À vous de jouer !</h2>
+        <p>Le guide pour tester Octo, notre agent IA, sur WhatsApp : votre candidat de référence, les offres de démonstration et les messages à envoyer.</p>
+        <a class="btn btn-primary" href="octo-flatchr.pdf" target="_blank" rel="noopener" data-agent-guide aria-disabled="true" tabindex="-1">Indications pour bien utiliser l'agent</a>
+        <p class="lock" data-agent-lock>Disponible à partir de 20h30, au moment des badges QR code.</p>
       </div>
     </div>
   </section>
@@ -127,10 +104,25 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>© 2026 Flatchr · Le logiciel de recrutement des managers de terrain</span>
-    <span>Programme susceptible d'évoluer</span>
+    <span>Une question ? <a href="mailto:contact@flatchr.io">contact@flatchr.io</a></span>
   </div>
 </footer>
 
-<script src="assets/site.js"></script>
+<script>
+  // Le bouton du guide s'active le 19 novembre 2026 à 20h30 (heure de Paris)
+  (function () {
+    var unlockAt = new Date("2026-11-19T20:30:00+01:00").getTime();
+    var btn = document.querySelector("[data-agent-guide]");
+    var lock = document.querySelector("[data-agent-lock]");
+    var check = function () {
+      if (Date.now() < unlockAt) return false;
+      btn.removeAttribute("aria-disabled");
+      btn.removeAttribute("tabindex");
+      if (lock) lock.remove();
+      return true;
+    };
+    if (!check()) { var t = setInterval(function () { if (check()) clearInterval(t); }, 15000); }
+  })();
+</script>
 </body>
 </html>
